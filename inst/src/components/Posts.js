@@ -1,13 +1,71 @@
 import React, {Component} from 'react';
-import Post from './Post';
+import InstaService from '../services/instaService';
+import User from './User';
 
 export default class Posts extends Component {
+
+    InstaService = new InstaService();
+    state = {
+        posts: [],
+        error: false
+    }
+
+    componentDidMount() {
+        this.updatePosts();
+    }
+
+    updatePosts() {
+        this.InstaService.getAllPosts()
+            .then(this.onPostsLoaded)
+            .catch(this.onError);
+    }
+
+    onPostsLoaded = (posts) => {
+        this.setState({
+            posts,
+            error: false
+        })
+        console.log(this.state.posts)
+    }
+
+    onError = (err) => {
+        this.setState({
+            error: true
+        })
+    }
+
+    renderItems(arr) {
+        return arr.map(item => {
+            const {name, altname, photo, src, alt, descr, id} = item;
+
+            return (
+                <div key={id} className="post">
+                    <User 
+                        src={photo}
+                        alt={altname}
+                        name={name}
+                        min />
+                <img src={src} alt={alt}></img>
+                <div className="post__name">
+                    {name}
+                </div>
+                <div className="post__descr">
+                    {descr}
+                </div>
+            </div>
+            )
+        });
+    }
+
+
     render() {
+        const {error, posts} = this.state;
+
+
+        const items = this.renderItems(posts);
         return (
             <div className="left">
-                <Post src="https://cdn.shopify.com/s/files/1/0045/5104/9304/t/27/assets/AC_ECOM_SITE_2020_REFRESH_1_INDEX_M2_THUMBS-V2-1.jpg?v=8913815134086573859" alt="inst" />
-
-                <Post src="https://s7g3.scene7.com/is/image/soloinvest/n11346A?$big_image_web$" alt="second" />
+                {items}
             </div>
         )
     }
