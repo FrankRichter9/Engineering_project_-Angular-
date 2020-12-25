@@ -33,8 +33,8 @@ export default class Palette extends Component {
 
     renderItems(arr) {
         return arr.map(item => {
-            const  {src, alt} = item;
-
+            const  {src, alt, autorID} = item;
+            if(autorID == localStorage.getItem('id'))
             return (
                 <img src={src} alt={alt}></img>
             )
