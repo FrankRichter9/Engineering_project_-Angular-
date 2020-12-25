@@ -32,6 +32,7 @@ export default class Posts extends Component {
         this.setState({
             error: true
         })
+        
     }
 
     renderItems(arr) {

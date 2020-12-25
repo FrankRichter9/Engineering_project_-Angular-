@@ -1,8 +1,8 @@
 var express = require("express")
 var app = express()
 
-var server = require('http').createServer(app)
-var router = express.Router();
+// var server = require('http').createServer(app)
+// var router = express.Router();
 var mysql  = require("mysql");
 
 app.use(function (req, res, next) {
@@ -55,31 +55,32 @@ app.get("/data", function (req, res) {
 var bodyParser = require('body-parser')
 app.use(bodyParser())
 
-// app.post("/data", function (req, res) {
+app.post("/login", function (req, res) {
 
-//   if(req.body){
+  if(req.body){
     
     
 
-//     console.log('Получены данные',req.body);
-//     req = req.body;
-//     console.log(req.body.id);
-//     let id = '"' + req.body.id + '"';
-//     let Content = '"' + req.body.Content + '"';
-//     let Status = '"' + req.body.Status + '"';
-//     let DateEnd = '"' + req.body.DateEnd + '"';
-//     if(req.body.type == 'add'){
-//       connection.query("INSERT INTO `data` (`id`, `Content`, `Status`, `DateEnd`) VALUES (" + id + ", " + Content + ", " + Status + ", " + DateEnd + ");", function(error, rows){
-//         if(!!error){
-//           console.log("query error")
-//         }else{
-//           console.log("connect DB post");
-//           console.log(rows);
-//         }
+    console.log('Получены данные',req.body);
+    connection.query('SELECT * FROM `profile` WHERE `login`="'+ req.body[0] +'" && `password`="'+ req.body[1] +'"; ' , function(err, rows){
+      
+                  console.log("connect DB post");
+                  console.log(rows.length);
+                  if(rows.length > 0){
+                    res.send(true);
+                  }else{
+                    res.send(false);
+                  }
+                
+    });
     
-//       });
-//     }
-
+    
+    
+    
+    
+      
+    }})
+  
 //     if(req.body.type == 'del'){
 //       connection.query("DELETE FROM `data` WHERE `id`=" + id + ";", function(error, rows){
 //         if(!!error){

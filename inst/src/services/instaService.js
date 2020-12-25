@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+
 export default class instaService {
     constructor() {
         this._apiBase = 'http://localhost:3000';
@@ -28,5 +31,21 @@ export default class instaService {
             src: post.src,
             alt: post.alt
         }
+    }
+
+
+
+
+    
+
+    loginServer = async(login, password) => {
+        const res = await axios.post(`${this._apiBase}/login`, [login, password])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
     }
 }
