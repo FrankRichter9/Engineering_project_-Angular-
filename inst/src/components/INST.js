@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Feed from './Feed';
 import Profile from './Profile';
+import Registration from './Registration';
+import AddPost from './AddPost';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Login from './Login';
 
 export default class INST extends Component {
     state = {
@@ -33,9 +34,11 @@ export default class INST extends Component {
             <Router>
       <div className="App">
         
-        <Header Login={Login} OutLogin={this.OutLogin} />
+        <Header OutLogin={this.OutLogin} />
         <Route path='/' component={Feed} exact/>
         <Route path='/profile' render={() => <Profile UpdateLogin={this.UpdateLogin}/>} exact/>
+        <Route path='/reg' component={Registration} exact/>
+        <Route path='/addpost' component={AddPost} exact/>
       </div>
     </Router>
     

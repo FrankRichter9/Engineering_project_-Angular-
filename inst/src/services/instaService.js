@@ -21,6 +21,12 @@ export default class instaService {
         return res;
     }
 
+    
+    getAllUsers = async () => {
+        const res = await this.getResource('/users/');
+        return res;
+    }
+
     getAllPhotos = async () => {
         const res = await this.getResource('/data/');
         return res.map(this._transformPosts);
@@ -48,4 +54,27 @@ export default class instaService {
             })
             return res;
     }
+
+    RegServer = async(name, inf, src, login, password) => {
+        const res = await axios.post(`${this._apiBase}/reg`, [name, inf, src, login, password])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
+    }
+
+    AddPost = async(src, descr) => {
+        const res = await axios.post(`${this._apiBase}/add`, [localStorage.getItem('id'), src, descr, localStorage.getItem('name'), localStorage.getItem('src')])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
+    }
+
 }

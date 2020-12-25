@@ -31,8 +31,7 @@ export default class Header extends Component {
         if(localStorage.getItem('Login') === 'true'){
             return(
                 <div>
-                    <p>Вы авторизированны</p>
-                    <p onClick={this.props.OutLogin}>выйти</p>
+                    <p onClick={this.props.OutLogin}>Выйти</p>
                 </div>
                 )
         }else{

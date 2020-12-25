@@ -4,6 +4,7 @@ import Palette from './Palette';
 import InstaService from '../services/instaService';
 import Login from './Login';
 import {Context} from './context';
+import {Link} from 'react-router-dom';
 
 
 
@@ -22,15 +23,21 @@ export default class Profile extends Component{
         const login =       e.target.elements.login.value;
         const password =    e.target.elements.pass.value;
         this.InstaService.loginServer(login, password)
-            .then(res => {
-                localStorage.setItem('Login', res);
+            .then(res => { console.log(res.status)
+                localStorage.setItem('Login', res.status);
+                localStorage.setItem('inf', res.inf);
+                localStorage.setItem('src', res.src);
+                localStorage.setItem('name', res.name);
+                localStorage.setItem('alt', res.alt);
+                localStorage.setItem('id', res.id);
+                
                 
                 this.setState({
-                    login: res,
+                    login: res.status,
                     error: false
                 })
                 if(res)props.UpdateLogin();
-                // this.render()
+                this.render()
             })
             .catch(err => {
                 console.log(err)
@@ -47,11 +54,12 @@ export default class Profile extends Component{
 
         return (this.state.login || localStorage.getItem('Login') === 'true' ?
            
-                <div classNmae="container profile">
+                <div className="container profile">
                     <User 
-                        src="https://media1.fdncms.com/stranger/imager/u/large/40901734/gettyimages-92204237_mag.jpg" 
-                        alt="man" 
-                        name="skot" />
+                        src={localStorage.getItem('src')} 
+                        alt={localStorage.getItem('alt')} 
+                        name={localStorage.getItem('name')} />
+                        <p className="descr">{localStorage.getItem('inf')}</p>
                     <Palette />
                 </div>
             :
@@ -59,7 +67,8 @@ export default class Profile extends Component{
                     <form onSubmit={this.loginMe(this.props)}>
                         <input type="text" name="login" placeholder="login"></input>
                         <input type="password" name="pass" placeholder="password"></input>
-                        <button type="submit" >log in</button>
+                        <button type="submit" >Log in</button>
+                        <Link to="reg"><button >Registration</button></Link>
                     </form>
                 </div>
             ) 

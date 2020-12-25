@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import InstaService from '../services/instaService';
 import User from './User';
+import {Link} from 'react-router-dom';
 
 export default class Posts extends Component {
 
@@ -36,15 +37,15 @@ export default class Posts extends Component {
     }
 
     renderItems(arr) {
-        return arr.map(item => {
-            const {name, altname, photo, src, alt, descr, id} = item;
+        return arr.reverse().map(item => {
+            const {name, altname, autorSrc, src, alt, descr, id, autorName} = item;
 
             return (
                 <div key={id} className="post">
                     <User 
-                        src={photo}
+                        src={autorSrc}
                         alt={altname}
-                        name={name}
+                        name={autorName}
                         min />
                 <img src={src} alt={alt}></img>
                 <div className="post__name">
@@ -58,6 +59,23 @@ export default class Posts extends Component {
         });
     }
 
+    renderAddPost() {
+        if(localStorage.getItem('Login') === 'true'){
+            return(
+                <Link to="/addpost"><div className="addPost">
+                    + add post
+                </div>
+                </Link>
+            )
+        }else {
+            return(
+                <div>
+                    
+                </div>
+            )
+        }
+    }
+
 
     render() {
         const {error, posts} = this.state;
@@ -66,6 +84,7 @@ export default class Posts extends Component {
         const items = this.renderItems(posts);
         return (
             <div className="left">
+                {this.renderAddPost()}
                 {items}
             </div>
         )
