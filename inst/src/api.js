@@ -200,7 +200,119 @@ app.post("/login", function (req, res) {
             
               
             }})
+
+
+
+            app.post("/edit", function (req, res) {
+
+              if(req.body){
+                
+                
+            
+                console.log('Получены данные',req.body);
+                connection.query('UPDATE `profile` SET `name`="'+ req.body[1] +'", `inf`="'+ req.body[2] +'", `src`="'+ req.body[3] +'" WHERE `id`="'+ req.body[0] +'";' , function(err, rows){
+                  
+                              console.log("connect DB post");
+                              res.send({
+                                              status: true
+                                            })
+                              // if(!!error){
+                              //             console.log("query error")
+                              //             res.send({
+                              //               status: false
+                              //             })
+                              //           }else{
+                              //             console.log("connect DB post");
+                              //             res.send({
+                              //               status: true
+                              //             })
+                              //           }
+                            
+                });
+                
+                
+                
+                
+                
+                  
+                }})
+
+
+
+
+
+                app.post("/delete", function (req, res) {
+
+                  if(req.body){
+                    
+                    
+                
+                    console.log('Получены данные для удаления',req.body);
+                    connection.query('DELETE FROM `profile` WHERE `id`="'+ req.body[0] +'";' , function(err, rows){
+                      
+                                  console.log("connect DB post");
+                                  res.send({
+                                                  status: true
+                                                })
+                                  // if(!!error){
+                                  //             console.log("query error")
+                                  //             res.send({
+                                  //               status: false
+                                  //             })
+                                  //           }else{
+                                  //             console.log("connect DB post");
+                                  //             res.send({
+                                  //               status: true
+                                  //             })
+                                  //           }
+                                
+                    });
+                    
+                    
+                    
+                    
+                    
+                      
+                    }})
   
+
+
+
+
+
+                    app.post("/deletePost", function (req, res) {
+
+                      if(req.body){
+                        
+                        
+                    
+                        console.log('Получены данные для удаления',req.body);
+                        connection.query('DELETE FROM `posts` WHERE `id`="'+ req.body[0] +'";' , function(err, rows){
+                          
+                                      console.log("connect DB post");
+                                      res.send({
+                                                      status: true
+                                                    })
+                                      // if(!!error){
+                                      //             console.log("query error")
+                                      //             res.send({
+                                      //               status: false
+                                      //             })
+                                      //           }else{
+                                      //             console.log("connect DB post");
+                                      //             res.send({
+                                      //               status: true
+                                      //             })
+                                      //           }
+                                    
+                        });
+                        
+                        
+                        
+                        
+                        
+                          
+                        }})
 //     if(req.body.type == 'del'){
 //       connection.query("DELETE FROM `data` WHERE `id`=" + id + ";", function(error, rows){
 //         if(!!error){

@@ -78,4 +78,44 @@ export default class instaService {
             return res;
     }
 
+    GetProfile = async (id) => {
+        const res = await this.getResource('/users/');
+        return res.map(user => {
+            if(user.id === id)return user;
+        });
+    }
+
+    EditServer = async(id, name, inf, src) => {
+        const res = await axios.post(`${this._apiBase}/edit`, [id, name, inf, src])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
+    }
+
+    DeleteProfile = async(id) => {
+        const res = await axios.post(`${this._apiBase}/delete`, [id])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
+    }
+
+    DeletePost = async(id) => {
+        const res = await axios.post(`${this._apiBase}/deletePost`, [id])
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            return res;
+    }
+
 }

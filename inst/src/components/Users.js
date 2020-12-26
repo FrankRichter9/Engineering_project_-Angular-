@@ -41,14 +41,15 @@ export default class Users extends Component {
     
         renderUsers(arr) {
             return arr.map(user => {
-                const {name, src} = user;
-    
+                const {name, src, id} = user;
+                const link = "/GetProfile?id=" + id;
                 return (
-                        <User 
+                        <Link to={link}><User 
                         src={src}
                         alt="man" 
                         name={name}
                         min />
+                        </Link>
                 )
             });
         }

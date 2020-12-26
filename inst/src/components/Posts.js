@@ -36,23 +36,51 @@ export default class Posts extends Component {
         
     }
 
+    AdminDelete = (id, autorID) => {
+        if(localStorage.getItem('id') == 2 || localStorage.getItem('id') == autorID){
+            return(
+                <Link className="ProfileFunction" onClick={() => this.DeleteThisPost(id)}>Удалить запись</Link>
+            )
+        }
+    }
+
+    DeleteThisPost(id){
+        this.InstaService.DeletePost(id)
+        .then(res => { 
+            
+            this.setState({
+                login: res.status,
+                error: false
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     renderItems(arr) {
         return arr.reverse().map(item => {
-            const {name, altname, autorSrc, src, alt, descr, id, autorName} = item;
-
+            const {name, altname, autorSrc, src, alt, descr, id, autorName, autorID} = item;
+            const link = "/GetProfile?id=" + autorID;
+            if(localStorage.getItem('id') == id){
+                const link = "/profile"
+        }
             return (
                 <div key={id} className="post">
-                    <User 
+                    <Link to={link}><User 
                         src={autorSrc}
                         alt={altname}
                         name={autorName}
-                        min />
+                        min /></Link>
                 <img src={src} alt={alt}></img>
                 <div className="post__name">
                     {name}
                 </div>
                 <div className="post__descr">
                     {descr}
+                </div>
+                <div>
+                    {this.AdminDelete(id, autorID)}
                 </div>
             </div>
             )

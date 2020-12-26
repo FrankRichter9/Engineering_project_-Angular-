@@ -67,7 +67,8 @@ header {
 .post {
     margin-bottom: 70px;
     width: 650px;
-    min-height: 560px;
+    min-height: 600px;
+    padding: 0 0 20px 0;
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
@@ -159,6 +160,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .palette img {
@@ -215,4 +217,15 @@ Link, a{
 .descr{
     padding: 10px;
     font-kerning: 15px;
+    margin:0 0 20px 0;
+}
+
+.ProfileFunction{
+    margin: 40px 20px 10px 10px;
+    padding: 10px;
+    background-color: skyblue;
+}
+
+.yellow{
+    background-color: lightpink;
 }

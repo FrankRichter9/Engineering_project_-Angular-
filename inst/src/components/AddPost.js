@@ -25,7 +25,7 @@ export default class Registration extends Component{
         this.InstaService.AddPost(src, descr)
             .then(res => { console.log(res.status)
                
-                
+                this.props.history.push('/')
                 this.setState({
                    add: res.status,
                     error: false
@@ -34,7 +34,7 @@ export default class Registration extends Component{
             .catch(err => {
                 console.log(err)
             })
-            window.open("/");
+            
     }
 
     render(){

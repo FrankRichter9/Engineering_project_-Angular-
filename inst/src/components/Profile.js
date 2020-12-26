@@ -45,13 +45,33 @@ export default class Profile extends Component{
         
     }
 
+    DeleteThisProfile = () => {
+        this.InstaService.DeleteProfile(localStorage.getItem('id'))
+        localStorage.setItem('Login', false);
+                localStorage.setItem('inf', undefined);
+                localStorage.setItem('src', undefined);
+                localStorage.setItem('name', undefined);
+                localStorage.setItem('alt', undefined);
+                localStorage.setItem('id', undefined);
+    }
+
     // renderProfile(){
         
     // }
-
+    GetDelete = () => {
+        if(localStorage.getItem('id') == 2){
+            return(
+                <Link className="ProfileFunction yellow">Данный профиль нельзя удалить</Link>
+            )
+        }else{
+            return(
+                <Link className="ProfileFunction" onClick={this.DeleteThisProfile}>Удалить Профиль</Link>
+            )
+        }
+    }
     render(){
        
-
+        
         return (this.state.login || localStorage.getItem('Login') === 'true' ?
            
                 <div className="container profile">
@@ -60,6 +80,8 @@ export default class Profile extends Component{
                         alt={localStorage.getItem('alt')} 
                         name={localStorage.getItem('name')} />
                         <p className="descr">{localStorage.getItem('inf')}</p>
+                        <Link to="/editProfile" className="ProfileFunction">Редактировать Профиль</Link>
+                        {this.GetDelete()}
                     <Palette />
                 </div>
             :
