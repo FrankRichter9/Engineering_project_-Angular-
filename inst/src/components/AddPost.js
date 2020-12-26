@@ -39,11 +39,11 @@ export default class Registration extends Component{
 
     render(){
         return(
-            <div className="form__reg">
+            <div className="form__reg form__add">
                 <form onSubmit={this.AddPost(this.props)}>
                         <h1>{this.state.reg}</h1>
-                        <input type="text" name="src" placeholder="photo src"></input>
-                        <input type="text" name="descr" placeholder="description"></input>
+                        <input type="text" name="src" placeholder="photo src" className="AddPost__src"></input>
+                        <textarea type="text" name="descr" placeholder="description" className="AddPost__descr" rows="8"></textarea>
                         <button type="submit" >Add post</button>
                 </form>
             </div>

@@ -229,3 +229,40 @@ Link, a{
 .yellow{
     background-color: lightpink;
 }
+
+.AddPost__descr{
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    resize: none;
+    padding: 20px 0;
+}
+
+.form__add input, .AddPost__src{
+    display: block;
+    width: 800px;
+}
+
+.form__add form{
+    width: 900px;
+    margin: 100px auto;
+}
+
+.form__add input{
+    display: block;
+    margin: 20px auto;
+    height: 50px;
+    width: 800px;
+    text-align: center;
+}
+
+.EditProfile__descr{
+        display: block;
+        margin: 10px auto;
+        width: 400px;
+        text-align: center;
+        resize: none;
+        padding: 20px 10px;
+    
+}

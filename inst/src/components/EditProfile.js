@@ -48,8 +48,8 @@ export default class EditProfile extends Component{
                 <form onSubmit={this.EditMe(this.props)}>
                         <h1>{this.state.reg}</h1>
                         <input type="text" name="name" placeholder="name" defaultValue={localStorage.getItem('name')}></input>
-                        <input type="text" name="inf" placeholder="information" defaultValue={localStorage.getItem('inf')}></input>
-                        <input type="text" name="src" placeholder="profile photo src" defaultValue={localStorage.getItem('src')}></input>
+                        <textarea type="text" name="inf" placeholder="information" defaultValue={localStorage.getItem('inf')} className="EditProfile__descr" rows="10"></textarea>
+                        <textarea type="text" name="src" placeholder="profile photo src" defaultValue={localStorage.getItem('src')} className="EditProfile__descr" rows="5"></textarea>
                         <button type="submit" >Изменить</button>
                 </form>
             </div>
