@@ -27,7 +27,7 @@ export default class Registration extends Component{
         this.InstaService.RegServer(name, inf, src, login, password)
             .then(res => { console.log(res.status)
                
-                
+                this.props.history.push('/')
                 this.setState({
                     reg: res.status,
                     error: false

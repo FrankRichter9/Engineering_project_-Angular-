@@ -29,6 +29,8 @@ export default class INST extends Component {
             login: false
         })
         localStorage.setItem('Login', false);
+        localStorage.setItem('id', undefined);
+        
     }
 
     render(){

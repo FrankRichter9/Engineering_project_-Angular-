@@ -110,6 +110,7 @@ export default class instaService {
     DeletePost = async(id) => {
         const res = await axios.post(`${this._apiBase}/deletePost`, [id])
             .then(res => {
+                this.props.history.push('/')
                 return res.data
             })
             .catch(err => {

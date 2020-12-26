@@ -42,7 +42,10 @@ export default class Users extends Component {
         renderUsers(arr) {
             return arr.map(user => {
                 const {name, src, id} = user;
-                const link = "/GetProfile?id=" + id;
+                let link = "/GetProfile?id=" + id;
+                if(localStorage.getItem('id') == id){
+                         link = "/profile"
+                }
                 return (
                         <Link to={link}><User 
                         src={src}

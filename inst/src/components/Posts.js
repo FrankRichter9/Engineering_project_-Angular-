@@ -49,7 +49,7 @@ export default class Posts extends Component {
         .then(res => { 
             
             this.setState({
-                login: res.status,
+                login: res,
                 error: false
             })
         })
@@ -61,9 +61,9 @@ export default class Posts extends Component {
     renderItems(arr) {
         return arr.reverse().map(item => {
             const {name, altname, autorSrc, src, alt, descr, id, autorName, autorID} = item;
-            const link = "/GetProfile?id=" + autorID;
-            if(localStorage.getItem('id') == id){
-                const link = "/profile"
+            let link = "/GetProfile?id=" + autorID;
+            if(localStorage.getItem('id') == autorID){
+                 link = "/profile";
         }
             return (
                 <div key={id} className="post">
